@@ -19,7 +19,7 @@ int comprar(void)
 	int escolha;
 	printf("Escolha qual ação deseja comprar\n", "r");
 	FILE *arqPont;
-	arqPont = fopen("/titulos-de-bolsa/titulos.txt\n", "r");
+	arqPont = fopen("/titulos-de-bolsa/titulos-compra.txt\n", "r");
 	return SUCESSO;
 }
 
@@ -28,6 +28,6 @@ int vender(void)
 	int escolha;
 	printf("Escolha qual ação deseja vender\n");
 	FILE *arqPont;
-	arqPont = fopen("/titulos-de-bolsa/titulos.txt\n", "r");
+	arqPont = fopen("/titulos-de-bolsa/titulos-venda.txt\n", "r");
 	return SUCESSO;
 }
