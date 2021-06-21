@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "utils.h"
 
 int menu(void)
 {
@@ -11,4 +12,22 @@ int menu(void)
 	scanf("%d", &op);
 	
 	return op;
+}
+
+int comprar(void)
+{
+	int escolha;
+	printf("Escolha qual ação deseja comprar\n", "r");
+	FILE *arqPont;
+	arqPont = fopen("/titulos-de-bolsa/titulos.txt\n", "r");
+	return SUCESSO;
+}
+
+int vender(void)
+{
+	int escolha;
+	printf("Escolha qual ação deseja vender\n");
+	FILE *arqPont;
+	arqPont = fopen("/titulos-de-bolsa/titulos.txt\n", "r");
+	return SUCESSO;
 }
