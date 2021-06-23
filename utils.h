@@ -3,13 +3,20 @@
 
 #define SUCESSO 1
 #define FALHA 0
-int menu(void);
-
+#define TAM 3
+#define NOME_TAM 8
 typedef struct{
 	int qtd;
 	float valor;
-	char nome[8];
+	char nome[NOME_TAM];
 } titulo;
 
-titulo acao[3];
+titulo acao[TAM];
+
+int menu(void);
+int comprar(void);
+int vender(void);
+int listar(float vetor[]);
+int cotacao(int tipo);
+
 #endif

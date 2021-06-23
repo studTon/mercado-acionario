@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "utils.h"
 
-titulo acao[3];
+titulo acao[TAM];
 
 int menu(void)
 {
@@ -19,19 +19,17 @@ int menu(void)
 int comprar(void)
 {
 	int escolha;
-	printf("Escolha qual ação deseja comprar\n", "r");
-	FILE *arqPont;
-	arqPont = fopen("/titulos-de-bolsa/titulos-compra.txt\n", "r");
+	//printf("Escolha qual ação deseja comprar\n", "r");
 	
-		
-	
+	char nome_arq[28];
+	FILE *fp;
 	int iCont;
-	for(iCont = 0; iCont < 3; iCont++)
-	{
-		fscanf(arqPont, "%d %f %s", &acao[iCont].qtd, &acao[iCont].valor, acao[iCont].nome);	
-	}
-	
-	
+	fp = fopen("titulos-compra", "r");
+	float  valor[3];
+	fscanf(fp, "%f %f %f", &valor[0], &valor[1], &valor[2]);
+	printf("== R$%f\n", valor[0]);
+	listar(valor);
+	//fclose(nome_arq);
 	return SUCESSO;
 }
 
@@ -39,18 +37,23 @@ int vender(void)
 {
 	int escolha;
 	printf("Escolha qual ação deseja vender\n");
-	FILE *arqPont;
-	arqPont = fopen("/titulos-de-bolsa/titulos-venda.txt\n", "r");
+	FILE* arqPont;
+	arqPont = fopen("titulos-venda.txt\n", "r");
 	return SUCESSO;
 }
 
-int listar(titulo vetor[])
+int listar(float vetor[])
 {
 	int iCont = 0;
 	
-	while(iCont < 3)
+	while(iCont < TAM)
 	{
-		printf("%d >> %s -- %d -- R$%f\n", iCont, vetor[iCont].nome, vetor[iCont].qtd, vetor[iCont].valor);
+		printf("== R$%f\n", vetor[iCont]);
 		iCont++;
 	}
+}
+
+int cotacao(int tipo)
+{
+	
 }
