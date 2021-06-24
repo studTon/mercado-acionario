@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "utils.h"
 
 titulo acao[TAM];
@@ -18,18 +19,27 @@ int menu(void)
 
 int comprar(void)
 {
-	int escolha;
-	//printf("Escolha qual ação deseja comprar\n", "r");
+	FILE *ptr;
 	
-	char nome_arq[28];
-	FILE *fp;
-	int iCont;
-	fp = fopen("titulos-compra", "r");
-	float  valor[3];
-	fscanf(fp, "%f %f %f", &valor[0], &valor[1], &valor[2]);
-	printf("== R$%f\n", valor[0]);
-	listar(valor);
-	//fclose(nome_arq);
+	ptr = fopen("titulos-compra.txt", "r");
+	
+	if((ptr = fopen("titulos-compra.txt", "r")) == NULL)
+	{
+		printf("Erro!\n");
+		exit(1);
+	}
+	
+	float valor[3];
+	fscanf(ptr, "%f", &valor[0]);
+	fscanf(ptr, "%f", &valor[1]);
+	fscanf(ptr, "%f", &valor[2]);
+	
+	fclose(ptr);
+	printf("-- %f\n", valor[0]);
+	printf("-- %f\n", valor[1]);
+	printf("-- %f\n", valor[2]);
+	//listar(valor);
+	
 	return SUCESSO;
 }
 
@@ -48,7 +58,7 @@ int listar(float vetor[])
 	
 	while(iCont < TAM)
 	{
-		printf("== R$%f\n", vetor[iCont]);
+		printf("-> R$ %.2f\n", vetor[iCont]);
 		iCont++;
 	}
 }
