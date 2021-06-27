@@ -21,7 +21,7 @@ int main(void)
 				vender();
 			}break;
 			case 3:{
-				
+				cotacao();
 			}break;
 			default: printf("Input inválido\n"); break;
 		}	
