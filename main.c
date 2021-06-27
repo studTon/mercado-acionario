@@ -15,13 +15,13 @@ int main(void)
 				printf("Sair...\n");
 			}break;
 			case 1:{
-
+				comprar();
 			}break;
 			case 2:{
-
+				vender();
 			}break;
 			case 3:{
-
+				cotacao();
 			}break;
 			default: printf("Input inválido\n"); break;
 		}	
