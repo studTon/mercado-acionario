@@ -163,27 +163,38 @@ int cotacao(void)
 		case 0: printf("Voltar...\n"); break;
 		case 1:{
 			int kCont;
-			for(int iCont = 0, kCont = 3; iCont < 3; iCont++, kCont++)
+			int iCont;
+			for(iCont = 0, kCont = 3; iCont < 3; iCont++, kCont++)
 			{
 				printf("%d -- %.2f vs %.2f\n", iCont, acao[iCont].valor, acao[kCont].valor);
 				printf("\n");
 			}
 			printf("Qual ação você deseja escolher?:: ");
-				scanf("%d", &op);
-				aplicarValor(tipo, escolherPos(op));
+			scanf("%d", &op);
+			int escolha = op;
+			if(acao[iCont].valor > acao[kCont].valor)
+				printf("Ação comprada a: R$%.2f\n", acao[escolha].valor);
+			else
+				printf("Ação comprada a: R$%.2f\n", acao[escolha + 3].valor);
+			aplicarValor(tipo, escolherPos(op));
 		}break;
 		case 2:{
 			int kCont;
-			for(int iCont = 0, kCont = 3; iCont < 3; iCont++, kCont++)
+			int iCont;
+			for(iCont = 0, kCont = 3; iCont < 3; iCont++, kCont++)
 			{
 				printf("%d -- %.2f vs %.2f\n", iCont, acao[iCont].valor, acao[kCont].valor);
 				printf("\n");
 				
 			}
 			printf("Qual ação você deseja escolher?:: ");
-				scanf("%d", &op);
-				
-				aplicarValor(tipo, escolherPos(op));
+			scanf("%d", &op);
+			int escolha = op;
+			if(acao[iCont].valor < acao[kCont].valor)
+				printf("Ação vendida a: R$%.2f\n", acao[escolha].valor);
+			else
+				printf("Ação vendida a: R$%.2f\n", acao[escolha + 3].valor);
+			aplicarValor(tipo, escolherPos(op));
 		}break;
 	}
 }
