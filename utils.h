@@ -20,5 +20,6 @@ int vender(void);
 int cotacao(void);
 float aplicarValor(int conjunto, int posicao);
 int escolherPos(int escolha);
+titulo criarLista(void)
 
 #endif
