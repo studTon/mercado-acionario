@@ -2,7 +2,12 @@
 #include <stdlib.h>
 #include "utils.h"
 
-titulo acao[6];
+titulo* acao[QTD_ACOES];
+
+void inicializar(void)
+{
+	printf(":::MERCADO DE AÇÕES:::\n\nLembre-se de ativar a compra e a venda para realizar as transações.\n");
+}
 
 int menu(void)
 {
@@ -31,19 +36,19 @@ int comprar(void)
 		exit(1);
 	}
 	
-	int valor[3];
-	char str1[8];
-	char str2[8];
-	char str3[8];
-	int qtd[3];
-	fscanf(ptr, "%d %s %d", &valor[0], &str1, &qtd[0]);
-	fscanf(ptr, "%d %s %d", &valor[1], &str2, &qtd[1]);
-	fscanf(ptr, "%d %s %d", &valor[2], &str3, &qtd[2]);
+	int valor[TAM];
+	char str1[NOME_TAM];
+	char str2[NOME_TAM];
+	char str3[NOME_TAM];
+	int qtd[TAM];
+	fscanf(ptr, "%d %s %d", &valor[0], str1, &qtd[0]);
+	fscanf(ptr, "%d %s %d", &valor[1], str2, &qtd[1]);
+	fscanf(ptr, "%d %s %d", &valor[2], str3, &qtd[2]);
 	
 	fclose(ptr);
-	float real[3];
+	float real[TAM];
 	
-	for(int iCont = 0; iCont < 3; iCont++)
+	for(int iCont = 0; iCont < TAM; iCont++)
 	{
 		real[iCont] = (float)valor[iCont] / 100.0;
 	}
@@ -51,29 +56,29 @@ int comprar(void)
 	//Armazenar nome na struct####################
 	int jCont = 0;
 	for(; jCont < NOME_TAM; jCont++)
-		acao[0].nome[jCont] = str1[jCont];
+		acao[0]->nome[jCont] = str1[jCont];
 	str1[jCont] = '\0';
 	jCont = 0;
 	for(; jCont < NOME_TAM; jCont++)
-		acao[1].nome[jCont] = str2[jCont];
+		acao[1]->nome[jCont] = str2[jCont];
 	str2[jCont] = '\0';
 	jCont = 0;
 	for(; jCont < NOME_TAM; jCont++)
-		acao[2].nome[jCont] = str3[jCont];
+		acao[2]->nome[jCont] = str3[jCont];
 	str3[jCont] = '\0';
 	//############################################
 	//Armazenar valor na struct
 	int iCont = 0;
 	int kCont = 0;
-	for(; iCont < 3; iCont++, kCont++)
+	for(; iCont < TAM; iCont++, kCont++)
 	{
-		acao[kCont].valor = real[iCont];
+		acao[kCont]->valor = real[iCont];
 	}
 	//Armazenar quantidade na struct
 	kCont = 0;
-	for(; iCont < 3; iCont++, kCont++)
+	for(; iCont < TAM; iCont++, kCont++)
 	{
-		acao[kCont].qtd = qtd[iCont];
+		acao[kCont]->qtd = qtd[iCont];
 	}
 	printf("%s -- R$%.2f -- %d\n", str1, real[0], qtd[0]);
 	printf("%s -- R$%.2f -- %d\n", str2, real[1], qtd[1]);
@@ -85,7 +90,6 @@ int comprar(void)
 
 int vender(void)
 {
-	int escolha;
 	printf("Escolha qual ação deseja vender:\n");
 	FILE *ptr;
 	
@@ -95,20 +99,20 @@ int vender(void)
 		printf("Erro!\n");
 		exit(1);
 	}
-	int valor[3];
-	char str1[8];
-	char str2[8];
-	char str3[8];
-	int qtd[3];
-	fscanf(ptr, "%d %s %d", &valor[0], &str1, &qtd[0]);
-	fscanf(ptr, "%d %s %d", &valor[1], &str2, &qtd[1]);
-	fscanf(ptr, "%d %s %d", &valor[2], &str3, &qtd[2]);
+	int valor[TAM];
+	char str1[NOME_TAM];
+	char str2[NOME_TAM];
+	char str3[NOME_TAM];
+	int qtd[TAM];
+	fscanf(ptr, "%d %s %d", &valor[0], str1, &qtd[0]);
+	fscanf(ptr, "%d %s %d", &valor[1], str2, &qtd[1]);
+	fscanf(ptr, "%d %s %d", &valor[2], str3, &qtd[2]);
 	
 	fclose(ptr);
 	
-	float real[3];
+	float real[TAM];
 	
-	for(int iCont = 0; iCont < 3; iCont++)
+	for(int iCont = 0; iCont < TAM; iCont++)
 	{
 		real[iCont] = (float)valor[iCont] / 100.0;
 	}
@@ -116,29 +120,29 @@ int vender(void)
 	//Armazenar nome na struct####################
 	int jCont = 0;
 	for(; jCont < NOME_TAM; jCont++)
-		acao[3].nome[jCont] = str1[jCont];
+		acao[3]->nome[jCont] = str1[jCont];
 	str1[jCont] = '\0';
 	jCont = 0;
 	for(; jCont < NOME_TAM; jCont++)
-		acao[4].nome[jCont] = str2[jCont];
+		acao[4]->nome[jCont] = str2[jCont];
 	str2[jCont] = '\0';
 	jCont = 0;
 	for(; jCont < NOME_TAM; jCont++)
-		acao[5].nome[jCont] = str3[jCont];
+		acao[5]->nome[jCont] = str3[jCont];
 	str3[jCont] = '\0';
 	//############################################
 	//Armazenar valor na struct
 	int iCont = 0;
-	int kCont = 3;
-	for(; iCont < 3; iCont++, kCont++)
+	int kCont = TAM;
+	for(; iCont < TAM; iCont++, kCont++)
 	{
-		acao[kCont].valor = real[iCont];
+		acao[kCont]->valor = real[iCont];
 	}
 	//Armazenar quantidade na struct
 	kCont = 3;
-	for(; iCont < 3; iCont++, kCont++)
+	for(; iCont < TAM; iCont++, kCont++)
 	{
-		acao[kCont].qtd = qtd[iCont];
+		acao[kCont]->qtd = qtd[iCont];
 	}
 	printf("%s -- R$%.2f -- %d\n", str1, real[0], qtd[0]);
 	printf("%s -- R$%.2f -- %d\n", str2, real[1], qtd[1]);
@@ -148,7 +152,7 @@ int vender(void)
 }
 
 
-int cotacao(void)
+void cotacao(void)
 {
 	printf("Deseja comprar ou vender ações?\n");
 	printf("0 - Voltar\n");
@@ -166,35 +170,52 @@ int cotacao(void)
 			int iCont;
 			for(iCont = 0, kCont = 3; iCont < 3; iCont++, kCont++)
 			{
-				printf("%d -- %.2f vs %.2f\n", iCont, acao[iCont].valor, acao[kCont].valor);
+				printf("%d -- %.2f vs %.2f\n", iCont, acao[iCont]->valor, acao[kCont]->valor);
 				printf("\n");
 			}
 			printf("Qual ação você deseja escolher?:: ");
 			scanf("%d", &op);
 			int escolha = op;
-			if(acao[iCont].valor > acao[kCont].valor)
-				printf("Ação comprada a: R$%.2f\n", acao[escolha].valor);
+			if(acao[iCont]->valor > acao[kCont]->valor)
+			{
+				printf("Ação comprada a: R$%.2f\n", acao[escolha]->valor);
+				mostrarVendas(acao[escolha]->valor);
+			}
+				
 			else
-				printf("Ação comprada a: R$%.2f\n", acao[escolha + 3].valor);
+			{
+				printf("Ação comprada a: R$%.2f\n", acao[escolha + 3]->valor);
+				mostrarVendas(acao[escolha + 3]->valor);
+			}
+				
 			aplicarValor(tipo, escolherPos(op));
+			printf("Valor aplicado: %f\n", aplicarValor(tipo, escolherPos(op)));
 		}break;
 		case 2:{
 			int kCont;
 			int iCont;
 			for(iCont = 0, kCont = 3; iCont < 3; iCont++, kCont++)
 			{
-				printf("%d -- %.2f vs %.2f\n", iCont, acao[iCont].valor, acao[kCont].valor);
+				printf("%d -- %.2f vs %.2f\n", iCont, acao[iCont]->valor, acao[kCont]->valor);
 				printf("\n");
 				
 			}
 			printf("Qual ação você deseja escolher?:: ");
 			scanf("%d", &op);
 			int escolha = op;
-			if(acao[iCont].valor < acao[kCont].valor)
-				printf("Ação vendida a: R$%.2f\n", acao[escolha].valor);
+			if(acao[iCont]->valor < acao[kCont]->valor)
+			{
+				printf("Ação vendida a: R$%.2f\n", acao[escolha]->valor);
+				mostrarVendas(acao[escolha]->valor);
+			}
+				
 			else
-				printf("Ação vendida a: R$%.2f\n", acao[escolha + 3].valor);
-			aplicarValor(tipo, escolherPos(op));
+			{
+				printf("Ação vendida a: R$%.2f\n", acao[escolha + 3]->valor);
+				mostrarVendas(acao[escolha + 3]->valor);
+			}
+				
+			printf("Valor aplicado: %f\n", aplicarValor(tipo, escolherPos(op)));
 		}break;
 	}
 }
@@ -207,7 +228,18 @@ int escolherPos(int escolha)
 
 float aplicarValor(int conjunto, int posicao)
 {
-	float valorAplicado = acao[conjunto * posicao].valor;
+	float valorAplicado = acao[conjunto * posicao]->valor;
 	return valorAplicado;
 }
 
+
+void exibirItem(titulo* head)
+{
+	printf("QTD: %d\n", head->qtd);
+	printf("Valor: %f\n", head->valor);
+}
+
+void mostrarVendas(titulo* acaoVendida)
+{
+	exibirItem(acao);
+}
