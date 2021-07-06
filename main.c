@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <locale.h>
 #include "utils.h"
 
 int main(void)
 {
 	setlocale(LC_ALL, "");
+	
+	
 	int chave;
 	do
 	{
